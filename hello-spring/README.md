@@ -32,6 +32,34 @@
 - removes previously compiled code
 - compiles code and runs it.
 
+## Client-Server Model
+
+- Client (browser) makes a HTTP request via the internet.
+- Server receives the request and responds.
+- HTTP Server is the software that processes the request
+- Spring Boot applications have an embedded HTTP Server
+    - The embedded HTTP Server processes requests.
+
+## IP Address
+
+- Sequence of numbers that identifies a computer (server).
+- Every computer has a unique IP Address.
+- The server that matches the client's IP Address picks up the request.
+- **Port**: Tells the server where to forward the request.
+    - a server can have over 65,000 ports.
+    - The HTTP server listens for requests on one of them.
+    - e.g., 123.4.5.6:8080
+    - DNS server maps the URL to an IP Address. 
+        - e.g., 172.217.13.132:443 --> www.google.com
+
+
+    
+
+
+
+
+
+
 
 
 
