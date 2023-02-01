@@ -52,8 +52,30 @@
     - DNS server maps the URL to an IP Address. 
         - e.g., 172.217.13.132:443 --> www.google.com
 
+## Launching a HTTP Server
 
-    
+- Add a dependency called **Spring Web**
+    - Launches a HTTP Server
+- **Dependency**: Packaged library of files (i.e. JAR files)
+- Spring Web bootstraps an HTTP Server.
+- Dependencies are found inside `pom.xml` file.
+- **Central Maven Repository** contains downloadable dependencies
+    - [Central Maven Repository](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web)
+
+## Localhost (Loopback address)
+
+- Loopback address: 127.0.0.1:8080
+    - Loops the request back to your own computer.
+- `localhost:8080`
+    - `localhost` translates to `127.0.0.1`
+
+## Changing the server port
+
+- In `application.properties` add:
+    - `server.port=9090`
+
+
+
 
 
 
