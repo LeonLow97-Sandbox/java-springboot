@@ -36,13 +36,20 @@ getGrades():
 - Model is data that the Controller sends to the View.
 - Without a Model, the View is meaningless.
 - Process:
-    1. the handler method has direct access to the Model.
-    2. the handler method can create data in the form of objects.
+  1. the handler method has direct access to the Model.
+  2. the handler method can create data in the form of objects.
+
+
       - contains *private fields, constructors and getters/setters*
-    3. the handler method can store the data in a Model attribute.
+  3. the handler method can store the data in a Model attribute.
+
+
       - Model attribute maps to a piece of data.
       - `model.addAttribute("name", data);`
 - Every handler has access to the model.
 
+## Thymeleaf
 
-
+- Combines View and Model
+- Uses variable expression that executes on a model attribute
+  - e.g., th:text="${grade.name}"
