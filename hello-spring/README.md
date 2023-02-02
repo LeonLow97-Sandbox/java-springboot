@@ -5,6 +5,12 @@
 - Artifact Id: Name of the application (ex: hello-spring).
 - Choose JAR as the file packaging type.
 - Dependency: Software that your application depends on.
+- Add Spring Web Dependency in `pom.xml`
+- [See full steps here](https://www.learnthepart.com/course/af54547f-e993-47bd-ad51-d7c7270c4e50/fadc9aa8-24dc-41fd-b8ee-1a4c55e32205)
+
+## Running Spring Boot with `Jar` file
+
+- [JAR File](https://www.learnthepart.com/course/af54547f-e993-47bd-ad51-d7c7270c4e50/9383b899-fcc5-4943-8874-89d36476396e)
 
 ## Areas in Spring Boot Project
 
@@ -74,3 +80,30 @@
 
 - In `application.properties` add:
   - `server.port=9090`
+
+## Maven Dependencies
+
+### Central Maven Repository
+
+- Where maven downloads dependencies from.
+
+### Local Maven Repository
+
+- Once downloaded, Maven puts them in your local repository (your computer).
+- If local repo doesn't contain the necessary dependencies, maven downloads them from the central maven repository.
+- To access local repository
+  - CTRL + SHIFT + G
+  - `~/.m2/repository`
+
+## Spring Boot DevTools Dependency
+
+#### Running a Spring Boot app:
+
+1. `clean spring-boot:run`: Runs application from scratch.
+2. `Spring Boot DevTools`: Picks up new changes and restarts application. (it's like nodemon in nodejs)
+   - download the dependency from central maven repository.
+   - https://search.maven.org/artifact/org.springframework.boot/spring-boot-devtools/3.0.2/jar
+
+## Cheatsheet
+
+- [Cheatsheet](https://www.learnthepart.com/course/af54547f-e993-47bd-ad51-d7c7270c4e50/7899da2b-131f-4caa-b3b3-96bc0888aca8)
