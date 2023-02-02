@@ -1,7 +1,7 @@
 # MVC Design
 
 - Spring Boot applications follow the MVC design.
-- View: what the user sees (server sends back html to the user).
+- View: what the user sees (server sends back html to the user). Visual elements that make up a webpage.
 - Model: data needed by the view
 - Controller: glues the Model and View together.
 
@@ -17,37 +17,32 @@ getGrades():
 ## Annotations
 
 - `@Controller`: converts a class into a controller
-    - class becomes the entry point for web requests.
+  - class becomes the entry point for web requests.
 - `@GetMapping`
-    - Each handler method can respond to a request.
-    - Converts a method into a handler method
-    - The handler method can accept GET requests.
+  - Each handler method can respond to a request.
+  - Converts a method into a handler method
+  - The handler method can accept GET requests.
+  - Handler method returns a view.
 
 ## Controller
 
 - Responds to requests be combining the Model and View.
 - `GET Request`: user is requesting a resource.
-    - localhost:8080/grades
-    - host:port/path
+  - localhost:8080/grades
+  - host:port/path
 
+## Model
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- Model is data that the Controller sends to the View.
+- Without a Model, the View is meaningless.
+- Process:
+    1. the handler method has direct access to the Model.
+    2. the handler method can create data in the form of objects.
+      - contains *private fields, constructors and getters/setters*
+    3. the handler method can store the data in a Model attribute.
+      - Model attribute maps to a piece of data.
+      - `model.addAttribute("name", data);`
+- Every handler has access to the model.
 
 
 
