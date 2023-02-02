@@ -53,3 +53,23 @@ getGrades():
 - Combines View and Model
 - Uses variable expression that executes on a model attribute
   - e.g., th:text="${grade.name}"
+
+```java
+<td th:text="${grade.name}"</td>
+<td th:text="${grade.subject}"</td>
+<td th:text="${grade.score}"</td>
+```
+
+### Thymeleaf expressions
+
+- Variable expression `${...}`: Executes on a model attribute in some way.
+- Selection expression `*{field}`: Selects a field from a previously bound object.
+  - `th:object="${model object}"`
+
+```java
+<tr th:object="${grade}">
+  <td th:text="*{name}"</td>
+  <td th:text="*{subject}"</td>
+  <td th:text="*{score}"</td>
+</tr>
+```
