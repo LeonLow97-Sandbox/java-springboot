@@ -1,5 +1,7 @@
 # Beans and Dependency Injection
 
+- [Beans and Dependency Injection CheatSheet](https://www.learnthepart.com/course/af54547f-e993-47bd-ad51-d7c7270c4e50/e210efe0-6347-4914-b6e9-3abe7e0755f0)
+
 ## How is a Bean created?
 
 1. A `@Component` class is automatically discovered by Spring.
