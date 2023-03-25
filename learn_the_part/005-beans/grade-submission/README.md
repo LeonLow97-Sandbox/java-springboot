@@ -62,6 +62,9 @@ public class GradeRepository {}
 - Use `@Service` and `@Repository` instead.
 - `@Service`, `@Repository` and `@Component` are all the same.
   - Any of them will turn a class into a bean.
+- Good Practice:
+  - Use `@Service` for the business logic layer.
+  - Use `@Repository` for the data access layer.
 
 ```java
 // Service
@@ -75,4 +78,29 @@ public class GradeService {
 // Repository
 @Repository
 public class GradeRepository {}
+```
+
+## How to register a bean? `@Bean`
+
+- `@Component` and `@Component` derivatives (`@Service`, `@Repository`)
+- Register a bean with `@Bean`.
+
+1. Create a Bean definition.
+2. `@Configuration` marks the class as a source of `@Bean` definitions.
+3. `@Autowired` wires the bean into the class that needs it.
+
+```java
+// Created a new file AppConfig.java
+@Configuration
+public class AppConfig {
+
+  @Bean
+  public GradeRepository gradeRepository() {
+    return new GradeRepository();
+  }
+}
+
+// Deleted this and used the @Component inside
+// GradeRepository.java instead because it is sufficient.
+// This @Bean is just to learn "good-to-know" stuff, might need it next time.
 ```
