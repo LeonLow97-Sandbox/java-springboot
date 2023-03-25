@@ -17,6 +17,7 @@
 - Service class (Business Logic Layer)
   - The service class is the middleman between the presentation and the data access layer.
   - The service class is the business logic layer because it contains every business related operation.
-- Data Access Layer (Data Access Layer)
+- Repository class (Data Access Layer)
+  - Repository class makes CRUD operations on the database.
   - Passes data back to the controller class.
 - In a nutshell, the controller class calls the service class, and the service class calls the repository class.
