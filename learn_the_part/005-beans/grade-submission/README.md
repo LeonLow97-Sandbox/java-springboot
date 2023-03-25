@@ -10,6 +10,7 @@
 3. A Spring container called ApplicationContext stores and manages the object.
 
 - **Bean**: an object that lives inside the Spring container AKA ApplicationContext.
+  - Component turns a class into a bean.
 
 ## Dependency Injection
 
@@ -55,3 +56,23 @@ public class GradeService {
 public class GradeRepository {}
 ```
 
+## `@Service` and `@Repository`
+
+- `@Component` is too generic.
+- Use `@Service` and `@Repository` instead.
+- `@Service`, `@Repository` and `@Component` are all the same.
+  - Any of them will turn a class into a bean.
+
+```java
+// Service
+@Service
+public class GradeService {
+
+    @Autowired
+    GradeRepository gradeRepository;
+}
+
+// Repository
+@Repository
+public class GradeRepository {}
+```
