@@ -1,5 +1,7 @@
 # Testing Web Application
 
+- [CheatSheet](https://www.learnthepart.com/course/af54547f-e993-47bd-ad51-d7c7270c4e50/b1d2354a-aa5c-4621-828a-3c2ea80f49fd)
+
 ## Dependency Injection and Unit Testing
 
 - **Unit Test**: Check if one small unit of your app works.
@@ -23,6 +25,7 @@
 
 1. Create a class called `GradeServiceTest.java`
 2. `@RunWith` uses `MockitoJUnitRunner` to run every unit test.
+
 ```xml
 <!-- https://mvnrepository.com/artifact/junit/junit -->
 <dependency>
@@ -32,11 +35,15 @@
     <scope>test</scope>
 </dependency>
 ```
+
 3. Use `@Mock` to create a mock of the Repository.
-  - this allows the `GradeService` to run test in isolation.
+
+- this allows the `GradeService` to run test in isolation.
+
 4. `@InjectMocks` creates an object and injects the mock into it.
-  - Injects `GradeRepository` into `GradeService` object.
-  - Creates a real object out of `GradeService`, and then it injects the `GradeRepository` mock into it.
+
+- Injects `GradeRepository` into `GradeService` object.
+- Creates a real object out of `GradeService`, and then it injects the `GradeRepository` mock into it.
 
 ### Process of Unit Testing
 
@@ -54,8 +61,9 @@
 
 - **Integration Test**: Maps the request and response lifecycle.
 - Traverses the entire application.
-- Require the *Spring Container* with Integration Testing.
+- Require the _Spring Container_ with Integration Testing.
 - Unit testing comes before integration test.
 - Verify the interaction between components in the application.
-
-
+- `@SpringBootTest` scans the entire application for components and loads them as beans.
+- `AutoConfigureMockMvc`: can mock web requests against one of the controllers handler methods.
+  - To test how the application handles web requests without running or deploying the application.
