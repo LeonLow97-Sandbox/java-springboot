@@ -2,6 +2,8 @@
 
 ## Dependency Injection and Unit Testing
 
+- **Unit Test**: Check if one small unit of your app works.
+
 ### What should we unit test?
 
 - The **Service** that contains business logic.
@@ -47,4 +49,13 @@
   1. The mock.
   2. Number of times you expect its method to be invoked.
   3. The method.
+
+# Integration Test
+
+- **Integration Test**: Maps the request and response lifecycle.
+- Traverses the entire application.
+- Require the *Spring Container* with Integration Testing.
+- Unit testing comes before integration test.
+- Verify the interaction between components in the application.
+
 
