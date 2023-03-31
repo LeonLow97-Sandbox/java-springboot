@@ -10,12 +10,8 @@ import com.ltp.contacts.pojo.Contact;
 
 @Repository
 public class ContactRepository {
-    
-    private List<Contact> contacts = Arrays.asList(
-        new Contact("123", "John Doe", "413212498"),
-        new Contact("456", "Jane Doe", "239048483"),
-        new Contact("789", "Leon Low", "398092385")
-    );
+
+    private List<Contact> contacts = new ArrayList<>();
 
     public List<Contact> getContacts() {
         return contacts;
@@ -29,10 +25,10 @@ public class ContactRepository {
         contacts.add(contact);
     }
 
-    public void updateContact(int index, Contact contact) { 
-        contacts.set(index, contact); 
+    public void updateContact(int index, Contact contact) {
+        contacts.set(index, contact);
     }
-    
+
     public void deleteContact(int index) {
         contacts.remove(index);
     }

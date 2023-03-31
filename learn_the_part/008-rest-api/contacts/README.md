@@ -24,5 +24,6 @@
 |`@RequestParam`|Used in the past to extract query values.|
 |`@PathVariable`|Used recently to extract data from **URI**. More suitable for REST.|
 |`@ResponseBody`|Serializes an object into JSON.|
+|`@RequestBody`|Deserialize JSON into an object|
 |`@RestController`|`@Controller` + `@ResponseBody`|
 |`@ResponseEntity`|Returns data and status code.|
