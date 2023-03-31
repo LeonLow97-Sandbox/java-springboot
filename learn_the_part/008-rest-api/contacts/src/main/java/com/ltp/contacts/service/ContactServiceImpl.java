@@ -4,6 +4,7 @@ import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import com.ltp.contacts.pojo.Contact;
 import com.ltp.contacts.repository.ContactRepository;
 
@@ -26,6 +27,11 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public void updateContact(String id, Contact contact) {
         contactRepository.updateContact(findIndexById(id), contact);
+    }
+
+    @Override
+    public void delteContact(String id) {
+    contactRepository.deleteContact(findIndexById(id));
     }
 
     private int findIndexById(String id) {

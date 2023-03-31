@@ -10,4 +10,6 @@ public interface ContactService {
 
   void updateContact(String id, Contact contact);
 
+  void delteContact(String id);
+
 }

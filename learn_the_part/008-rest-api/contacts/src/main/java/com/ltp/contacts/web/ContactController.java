@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import com.ltp.contacts.pojo.Contact;
 import com.ltp.contacts.service.ContactService;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,6 +41,12 @@ public class ContactController {
             @RequestBody Contact contact) {
         contactService.updateContact(id, contact);
         return new ResponseEntity<>(contactService.getContactById(id), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/contact/{id}")
+    public ResponseEntity<HttpStatus> deleteContact(@PathVariable String id) {
+        contactService.delteContact(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }
