@@ -3,7 +3,6 @@ package com.ltp.contacts.service;
 import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import com.ltp.contacts.pojo.Contact;
 import com.ltp.contacts.repository.ContactRepository;
@@ -22,6 +21,11 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public void saveContact(Contact contact) {
         contactRepository.saveContact(contact);
+    }
+
+    @Override
+    public void updateContact(String id, Contact contact) {
+        contactRepository.updateContact(findIndexById(id), contact);
     }
 
     private int findIndexById(String id) {

@@ -9,6 +9,7 @@ import com.ltp.contacts.service.ContactService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,7 +31,15 @@ public class ContactController {
     @PostMapping("/contact")
     public ResponseEntity<HttpStatus> createContact(@RequestBody Contact contact) {
         contactService.saveContact(contact);
+        System.out.println(contact.getId());
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PutMapping("/contact/{id}")
+    public ResponseEntity<Contact> updateContact(@PathVariable String id,
+            @RequestBody Contact contact) {
+        contactService.updateContact(id, contact);
+        return new ResponseEntity<>(contactService.getContactById(id), HttpStatus.OK);
     }
 
 }

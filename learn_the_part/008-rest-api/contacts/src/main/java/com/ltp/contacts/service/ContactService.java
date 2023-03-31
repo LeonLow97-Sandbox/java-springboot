@@ -8,4 +8,6 @@ public interface ContactService {
 
   void saveContact(Contact contact);
 
+  void updateContact(String id, Contact contact);
+
 }
