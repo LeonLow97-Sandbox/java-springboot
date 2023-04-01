@@ -5,4 +5,7 @@ import com.ltp.gradesubmission.entity.Grade;
 
 public interface GradeRepository extends CrudRepository<Grade, Long> {
 
+  // Custom query
+  Grade findByStudentId(Long studentId);
+
 }

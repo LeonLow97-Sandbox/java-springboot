@@ -74,6 +74,8 @@ spring.datasource.url=jdbc:h2:mem:grade-submission
 | `@AllArgsConstructor` |           Generates a constructor with arguments for all fields.            |
 | `@NoArgsConstructor`  |                 Generates a constructor with no arguments.                  |
 | `@EqualsAndHashCode`  | Generates equals() and hashCode() methods based on the fields of the class. |
+|`@RequiredArgsConstructor`|Generates a constructor for all final fields in a class. For `@NonNull` fields.|
+|`@JsonIgnore`|Remove as part of the JSON.|
 
 - If there are no constructors, Java generates one by default.
 - If a constructor is defined, don't forget to add `@NoArgsConstructor`.
@@ -85,8 +87,10 @@ spring.datasource.url=jdbc:h2:mem:grade-submission
 - **Many** rows in the child table belong to **One** row in the parent table.
 - Foreign key: references the primary key of another table.
 - Process:
+
   1. Many grades are associated with One student.
   2. The child table manages the foreign key.
+
   ```java
   // Tells Spring JPA that many grades are associated to one student
   public class Grade {
@@ -99,3 +103,21 @@ spring.datasource.url=jdbc:h2:mem:grade-submission
 - `optional = false` vs `nullable = false`
   - `optional = false` is a runtime instruction which happens before contacting the database. (recommended)
   - `nullable = false` blocks the null value at the database layer.
+
+## Defining a Custom Query
+
+```java
+public interface GradeRepository extends CrudRepository<Grade, Long> {
+  // Custom query
+  Grade findByStudentId(Long studentId);
+}
+```
+
+## Bidirectional Relationship
+
+- One to Many Relationship
+- On the parent side, we say there is a OneToMany relationship. On the child side, we say there is a ManyToOne relationship.
+- The owner who is managing the relationship is the **foreign key column**.
+  - Thus, on the other table, need to put a `mappedBy` parameter.
+  - `mappedBy`: goes on the non-owning side of the relationship.
+
