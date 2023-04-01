@@ -41,3 +41,28 @@
 @ExceptionHandler(YourException.class)
 public ReturnType method(YourException ex) {}
 ```
+
+## OpenAPI REST API Documentation
+
+- Path for one of the operations, as well as a description of what it does.
+- Parameters to be included for the operation to succeed.
+- The response to expect if the client makes a good request.
+
+```xml
+<dependency>
+  <groupId>org.springdoc</groupId>
+  <artifactId>springdoc-openapi-ui</artifactId>
+  <version>1.6.9
+</dependency>
+```
+
+- [API Docs](http://localhost:8080/v3/api-docs)
+- [View OpenAPI Definition](http://localhost:8080/swagger-ui/index.html)
+
+## OpenAPI Annotations
+
+|Annotation|Description|
+|:-:|:-:|
+|`@ApiResponse`|This annotation is used to specify a possible response from an API operation. It takes parameters such as response code, description, and schema.|
+|`@ApiResponses`|This annotation is used to specify a list of possible responses from an API operation. It takes an array of `@ApiResponse` annotations as its parameter.|
+|`@Operation`|This annotation is used to describe an API operation. It takes parameters such as HTTP method, operation summary, description, request body, and response type. This annotation can also be used to specify parameters and security requirements for the operation.|
