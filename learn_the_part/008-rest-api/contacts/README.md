@@ -27,3 +27,16 @@
 |`@RequestBody`|Deserialize JSON into an object|
 |`@RestController`|`@Controller` + `@ResponseBody`|
 |`@ResponseEntity`|Returns data and status code.|
+
+# Annotations for Exception Handling
+
+|Annotation|Description|
+|:-:|:-:|
+|`@ControllerAdvice`|class-level annotation that allows you to define **global exception handlers**.|
+|`@ExceptionHandler`|method-level annotation that defines an exception handler.|
+|`JsonFormat`|Configure the serialized JSON format.|
+
+```java
+@ExceptionHandler(YourException.class)
+public ReturnType method(YourException ex) {}
+```
