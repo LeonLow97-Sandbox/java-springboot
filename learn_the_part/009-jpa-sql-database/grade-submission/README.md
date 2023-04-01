@@ -67,15 +67,15 @@ spring.datasource.url=jdbc:h2:mem:grade-submission
 
 ## Lombok Annotations
 
-|   Lombok Annotation   |                                 Description                                 |
-| :-------------------: | :-------------------------------------------------------------------------: |
-|       `@Getter`       |                Generates getters for all non-static fields.                 |
-|       `@Setter`       |                Generates setters for all non-static fields.                 |
-| `@AllArgsConstructor` |           Generates a constructor with arguments for all fields.            |
-| `@NoArgsConstructor`  |                 Generates a constructor with no arguments.                  |
-| `@EqualsAndHashCode`  | Generates equals() and hashCode() methods based on the fields of the class. |
-|`@RequiredArgsConstructor`|Generates a constructor for all final fields in a class. For `@NonNull` fields.|
-|`@JsonIgnore`|Remove as part of the JSON.|
+|     Lombok Annotation      |                                   Description                                   |
+| :------------------------: | :-----------------------------------------------------------------------------: |
+|         `@Getter`          |                  Generates getters for all non-static fields.                   |
+|         `@Setter`          |                  Generates setters for all non-static fields.                   |
+|   `@AllArgsConstructor`    |             Generates a constructor with arguments for all fields.              |
+|    `@NoArgsConstructor`    |                   Generates a constructor with no arguments.                    |
+|    `@EqualsAndHashCode`    |   Generates equals() and hashCode() methods based on the fields of the class.   |
+| `@RequiredArgsConstructor` | Generates a constructor for all final fields in a class. For `@NonNull` fields. |
+|       `@JsonIgnore`        |                           Remove as part of the JSON.                           |
 
 - If there are no constructors, Java generates one by default.
 - If a constructor is defined, don't forget to add `@NoArgsConstructor`.
@@ -121,3 +121,30 @@ public interface GradeRepository extends CrudRepository<Grade, Long> {
   - Thus, on the other table, need to put a `mappedBy` parameter.
   - `mappedBy`: goes on the non-owning side of the relationship.
 
+## Cascade
+
+- If we were to delete a student, grades associated with that student_id will have no meaning at all. Have to cascade down the effect of deleting the student.
+- Only works for Bidirectional.
+
+```java
+@JsonIgnore
+@OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+private List<Grade> grades;
+```
+
+## `Autowired` vs `@AllArgsConstructor`
+
+- Udemy instructor suggests that `@AllArgsConstructor` should be used when there are too many beans to inject.
+  - Don't have to specify multiple `@Autowired` annotations.
+- ChatGPT suggests that `@AllArgsConstructor` is not the best choice as the number of dependencies injected into a bean increases.
+  - It makes it difficult to keep track of which argument corresponds to which field.
+  - Harder to debug and modify the code, and it can also make it more error-prone.
+
+```java
+@AllArgsConstructor
+@Service
+public class GradeServiceImpl implements GradeService {
+
+    GradeRepository gradeRepository;
+    StudentRepository studentRepository;
+```

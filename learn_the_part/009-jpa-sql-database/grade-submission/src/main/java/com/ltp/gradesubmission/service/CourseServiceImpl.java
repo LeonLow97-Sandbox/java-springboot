@@ -3,7 +3,9 @@ package com.ltp.gradesubmission.service;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import com.ltp.gradesubmission.entity.Course;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 @Service
 public class CourseServiceImpl implements CourseService {
 
