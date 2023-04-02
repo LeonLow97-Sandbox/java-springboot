@@ -74,7 +74,7 @@ spring.datasource.url=jdbc:h2:mem:grade-submission
 |   `@AllArgsConstructor`    |             Generates a constructor with arguments for all fields.              |
 |    `@NoArgsConstructor`    |                   Generates a constructor with no arguments.                    |
 |    `@EqualsAndHashCode`    |   Generates equals() and hashCode() methods based on the fields of the class.   |
-| `@RequiredArgsConstructor` | Generates a constructor for all final fields in a class. For `@NonNull` fields. |
+| `@RequiredArgsConstructor` | Generates a constructor for all final fields in a class. Takes `@NonNull` fields. |
 |       `@JsonIgnore`        |                           Remove as part of the JSON.                           |
 
 - If there are no constructors, Java generates one by default.
@@ -120,6 +120,7 @@ public interface GradeRepository extends CrudRepository<Grade, Long> {
 - The owner who is managing the relationship is the **foreign key column**.
   - Thus, on the other table, need to put a `mappedBy` parameter.
   - `mappedBy`: goes on the non-owning side of the relationship.
+- Rule of thumb: When applicable, put the foreign key column in the table that cannot live without the other.
 
 ## Cascade
 
@@ -148,3 +149,9 @@ public class GradeServiceImpl implements GradeService {
     GradeRepository gradeRepository;
     StudentRepository studentRepository;
 ```
+
+## `Optional`
+
+- More elegant way for dealing with 'null' values passed into the controller.
+  - For example, updating a student that does not exist.
+- Prevents `NullPointerExceptions`.

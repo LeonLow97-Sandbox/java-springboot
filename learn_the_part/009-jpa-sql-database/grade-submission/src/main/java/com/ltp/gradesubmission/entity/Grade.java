@@ -30,4 +30,8 @@ public class Grade {
     @JoinColumn(name = "student_id", referencedColumnName = "id") // define a foreign key column that joins 2 separate tables
     private Student student;
 
+    @ManyToOne(optional = false) // a grade cannot exist without a student
+    @JoinColumn(name = "course_id", referencedColumnName = "id") // define a foreign key column that joins 2 separate tables
+    private Course course;
+
 }

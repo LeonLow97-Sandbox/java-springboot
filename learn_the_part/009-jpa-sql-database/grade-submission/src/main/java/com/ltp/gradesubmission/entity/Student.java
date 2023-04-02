@@ -2,7 +2,6 @@ package com.ltp.gradesubmission.entity;
 
 import java.time.LocalDate;
 import java.util.List;
-import javax.annotation.Generated;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
