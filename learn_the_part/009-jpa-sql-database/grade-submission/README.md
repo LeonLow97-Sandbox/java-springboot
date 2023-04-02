@@ -180,3 +180,21 @@ void deleteByStudentIdAndCourseId(Long studentId, Long courseId);
 ```
 
 - In this case, the method "deleteByStudentIdAndCourseId" is performing a database operation (delete) which requires a transaction to ensure data consistency and integrity.
+
+## `@UniqueConstraint`
+
+- Adding unique constraints to multiple columns.
+
+```java
+@Table(name = "grade", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"student_id", "course_id"})
+})
+```
+
+- Adding unique constraint to a single column.
+
+```java
+@NonNull
+@Column(name = "code", nullable = false, unique = true)
+private String code;
+```
