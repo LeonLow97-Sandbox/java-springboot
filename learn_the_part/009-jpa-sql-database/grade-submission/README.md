@@ -67,15 +67,15 @@ spring.datasource.url=jdbc:h2:mem:grade-submission
 
 ## Lombok Annotations
 
-|     Lombok Annotation      |                                   Description                                   |
-| :------------------------: | :-----------------------------------------------------------------------------: |
-|         `@Getter`          |                  Generates getters for all non-static fields.                   |
-|         `@Setter`          |                  Generates setters for all non-static fields.                   |
-|   `@AllArgsConstructor`    |             Generates a constructor with arguments for all fields.              |
-|    `@NoArgsConstructor`    |                   Generates a constructor with no arguments.                    |
-|    `@EqualsAndHashCode`    |   Generates equals() and hashCode() methods based on the fields of the class.   |
+|     Lombok Annotation      |                                    Description                                    |
+| :------------------------: | :-------------------------------------------------------------------------------: |
+|         `@Getter`          |                   Generates getters for all non-static fields.                    |
+|         `@Setter`          |                   Generates setters for all non-static fields.                    |
+|   `@AllArgsConstructor`    |              Generates a constructor with arguments for all fields.               |
+|    `@NoArgsConstructor`    |                    Generates a constructor with no arguments.                     |
+|    `@EqualsAndHashCode`    |    Generates equals() and hashCode() methods based on the fields of the class.    |
 | `@RequiredArgsConstructor` | Generates a constructor for all final fields in a class. Takes `@NonNull` fields. |
-|       `@JsonIgnore`        |                           Remove as part of the JSON.                           |
+|       `@JsonIgnore`        |                            Remove as part of the JSON.                            |
 
 - If there are no constructors, Java generates one by default.
 - If a constructor is defined, don't forget to add `@NoArgsConstructor`.
@@ -155,3 +155,28 @@ public class GradeServiceImpl implements GradeService {
 - More elegant way for dealing with 'null' values passed into the controller.
   - For example, updating a student that does not exist.
 - Prevents `NullPointerExceptions`.
+- Container around an object that risks being 'null'.
+- Tells whoever is using the method that null might be returned so the user must handle it.
+
+```java
+@Override
+public Student getStudent(Long id) {
+    Optional<Student> student = studentRepository.findById(id);
+    if (student.isPresent()) {
+        return student.get();
+    } else {
+        throw new StudentNotFoundException(id);
+    }
+}
+```
+
+## `@Transactional`
+
+- `@Transactional` annotation is used to specify that the method should be executed within a transaction.
+
+```java
+@Transactional
+void deleteByStudentIdAndCourseId(Long studentId, Long courseId);
+```
+
+- In this case, the method "deleteByStudentIdAndCourseId" is performing a database operation (delete) which requires a transaction to ensure data consistency and integrity.
