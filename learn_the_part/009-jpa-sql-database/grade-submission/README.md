@@ -5,6 +5,7 @@
   - fast and lightweight.
 - JPA: allows us to interact with the database
   - connects to a object relational mapping database.
+- [CheatSheet](https://www.learnthepart.com/course/af54547f-e993-47bd-ad51-d7c7270c4e50/aaa310f1-e84e-4f53-aa05-a014c503863a)
 
 ```java
 // application.properties
@@ -198,3 +199,41 @@ void deleteByStudentIdAndCourseId(Long studentId, Long courseId);
 @Column(name = "code", nullable = false, unique = true)
 private String code;
 ```
+
+## `@ManyToMany`
+
+```java
+// put the @JoinTable on one side of the parent tables
+@ManyToMany
+@JoinTable(
+    name = "course_student", 
+    joinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id"),
+    inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id")
+)
+private List<Student> students;
+
+// In the other parent table
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+        name = "course_student", 
+        joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id")
+    )
+    private Set<Course> courses;
+```
+
+## Using a `Set`
+
+- Every student in the collection must be unique.
+- To prevent duplicate entries during runtime.
+
+```java
+// Instead of 
+private List<Student> students;
+
+// use this
+private Set<Student> students;
+```
+
+
