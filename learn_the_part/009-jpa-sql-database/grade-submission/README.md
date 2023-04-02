@@ -206,7 +206,7 @@ private String code;
 // put the @JoinTable on one side of the parent tables
 @ManyToMany
 @JoinTable(
-    name = "course_student", 
+    name = "course_student",
     joinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id"),
     inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id")
 )
@@ -216,7 +216,7 @@ private List<Student> students;
     @JsonIgnore
     @ManyToMany
     @JoinTable(
-        name = "course_student", 
+        name = "course_student",
         joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"),
         inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id")
     )
@@ -229,11 +229,9 @@ private List<Student> students;
 - To prevent duplicate entries during runtime.
 
 ```java
-// Instead of 
+// Instead of
 private List<Student> students;
 
 // use this
 private Set<Student> students;
 ```
-
-
