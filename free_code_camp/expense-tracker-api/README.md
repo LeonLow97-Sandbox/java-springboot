@@ -12,3 +12,4 @@
 4. To enter interactive mode in container to access PostgreSQL again
   - `docker container exec -it postgresdb psql -U postgres`
   - In the interactive CLI, enter `\connect expensetrackerdb`
+

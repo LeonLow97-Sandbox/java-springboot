@@ -11,6 +11,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import com.pairlearning.expensetrackerapi.domain.User;
 import com.pairlearning.expensetrackerapi.exceptions.EtAuthException;
+import org.springframework.jdbc.core.RowMapper;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
@@ -66,7 +67,7 @@ public class UserRepositoryImpl implements UserRepository {
         return jdbcTemplate.queryForObject(SQL_FIND_BY_ID, userRowMapper, userId);
     }
 
-    private org.springframework.jdbc.core.RowMapper<User> userRowMapper = ((rs, rowNum) -> {
+    private RowMapper<User> userRowMapper = ((rs, rowNum) -> {
         return new User(rs.getInt("USER_ID"),
             rs.getString("FIRST_NAME"),
             rs.getString("LAST_NAME"),
