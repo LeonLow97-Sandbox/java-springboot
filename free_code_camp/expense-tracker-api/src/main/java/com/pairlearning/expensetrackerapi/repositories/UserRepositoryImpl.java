@@ -2,7 +2,6 @@ package com.pairlearning.expensetrackerapi.repositories;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
-import javax.swing.tree.RowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -56,7 +55,7 @@ public class UserRepositoryImpl implements UserRepository {
         return jdbcTemplate.queryForObject(SQL_FIND_BY_ID, userRowMapper, userId);
     }
 
-    private RowMapper<User> userRowMapper = ((rs, rowNum) -> {
+    private org.springframework.jdbc.core.RowMapper<User> userRowMapper = ((rs, rowNum) -> {
         return new User(rs.getInt("USER_ID"),
             rs.getString("FIRST_NAME"),
             rs.getString("LAST_NAME"),
