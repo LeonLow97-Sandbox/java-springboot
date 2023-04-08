@@ -16,32 +16,32 @@
   - JPA provides a query language (JPQL) that is similar to SQL, but provides additional features such as object-oriented querying, type-safe querying and caching.
   - Easier to write and maintain complex queries.
 
-## Writing SQL Queries with JPA
+## Writing SQL Queries with JPA 
+
+- `SELECT`
 
 ```java
 // Repository Interface
 @Repository
-public interface MyEntityRepository extends JpaRepository<MyEntity, Long> {
-
-    @Query(value = "SELECT * FROM my_entity WHERE my_field = :fieldValue", nativeQuery = true)
-    List<MyEntity> findByFieldValue(String fieldValue);
-
+public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Long> {
+    
+    @Query("SELECT e FROM EmployeeEntity e JOIN e.department d WHERE d.name = :departmentName")
+    List<EmployeeEntity> findEmployeesByDepartmentName(@Param("departmentName") String departmentName);
+    
 }
 
-// Repository Class
+List<EmployeeEntity> employees = employeeRepository.findEmployeesByDepartmentName("Sales");
+```
+
+- `UPDATE`, `INSERT`, `DELETE`
+
+```java
 @Repository
-public class MyRepository {
-
-    private final JdbcOperations jdbcOperations;
-
-    public MyRepository(JdbcOperations jdbcOperations) {
-        this.jdbcOperations = jdbcOperations;
-    }
-
-    public List<MyEntity> findByFieldValue(String fieldValue) {
-        String sql = "SELECT * FROM my_entity WHERE my_field = ?";
-        return jdbcOperations.query(sql, new Object[]{fieldValue}, new MyEntityRowMapper());
-    }
+public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Long> {
+    
+    @Modifying
+    @Query("UPDATE EmployeeEntity e SET e.firstName = :firstName, e.lastName = :lastName WHERE e.id = :id")
+    void updateEmployeeName(@Param("id") Long id, @Param("firstName") String firstName, @Param("lastName") String lastName);
+    
 }
-
 ```
