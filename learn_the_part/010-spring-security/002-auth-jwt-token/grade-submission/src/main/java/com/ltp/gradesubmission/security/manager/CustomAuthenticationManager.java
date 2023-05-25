@@ -7,29 +7,27 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+
 import com.ltp.gradesubmission.entity.User;
-import com.ltp.gradesubmission.service.UserServiceImpl;
+import com.ltp.gradesubmission.service.UserService;
+
 import lombok.AllArgsConstructor;
 
-// Making this into a bean
 @Component
 @AllArgsConstructor
-public class CustomAuthenticationManager implements AuthenticationManager {
+public class CustomAuthenticationManager implements AuthenticationManager {    
 
-    private UserServiceImpl userServiceImpl;
+    
+    private UserService userServiceImpl;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public Authentication authenticate(Authentication authentication)
-            throws AuthenticationException {
+    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         User user = userServiceImpl.getUser(authentication.getName());
-        if (bCryptPasswordEncoder.matches(authentication.getCredentials().toString(),
-                user.getPassword())) {
-            throw new BadCredentialsException("Incorrect Password!");
+        if (!bCryptPasswordEncoder.matches(authentication.getCredentials().toString(), user.getPassword())) {
+            throw new BadCredentialsException("You provided an incorrect password.");
         }
-        System.out.println("Authenticated with " + authentication.getName());
-        return new UsernamePasswordAuthenticationToken(authentication.getName(),
-                user.getPassword());
-    }
 
+        return new UsernamePasswordAuthenticationToken(authentication.getName(), user.getPassword());
+    }
 }
