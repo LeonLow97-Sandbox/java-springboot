@@ -7,8 +7,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import com.ltp.gradesubmission.security.filter.AuthenticationFilter;
-import com.ltp.gradesubmission.security.filter.FilterOne;
-import com.ltp.gradesubmission.security.filter.FilterTwo;
+import com.ltp.gradesubmission.security.filter.ExceptionHandlerFilter;
+import com.ltp.gradesubmission.security.manager.CustomAuthenticationManager;
 import lombok.AllArgsConstructor;
 
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -18,9 +18,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @AllArgsConstructor
 public class SecurityConfig {
 
+    CustomAuthenticationManager customAuthenticationManager;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        AuthenticationFilter authenticationFilter = new AuthenticationFilter();
+        AuthenticationFilter authenticationFilter = new AuthenticationFilter(customAuthenticationManager);
         authenticationFilter.setFilterProcessesUrl("/authenticate"); // change from /login to /authentication
 
         http        
@@ -32,9 +34,8 @@ public class SecurityConfig {
             .antMatchers(HttpMethod.POST, SecurityConstants.REGISTER_PATH).permitAll()
             .anyRequest().authenticated()
             .and()
-            .addFilterBefore(new FilterOne(), AuthenticationFilter.class) // runs before the AuthenticationFilter
+            .addFilterBefore(new ExceptionHandlerFilter(), AuthenticationFilter.class) // runs before the AuthenticationFilter
             .addFilter(authenticationFilter)
-            .addFilterAfter(new FilterTwo(), AuthenticationFilter.class)
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         return http.build();
     }

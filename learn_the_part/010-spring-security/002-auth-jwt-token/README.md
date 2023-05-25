@@ -77,6 +77,7 @@
   - Request gets passed to the `attemptAuthentication()` function to create an `Authentication` object.
 - Authentication Manager
   - The request then gets passed to the `authenticate()` function where the username and password are compared with that in the database.
+  - If authenticated with data store, return the Authentication object back to the Authentication Filter.
 - Authentication Filter
   - If authenticated, create JWT in the method of `successfulAuthentication()` in the `header.payload.signature`.
 
