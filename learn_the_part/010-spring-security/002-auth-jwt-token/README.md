@@ -69,3 +69,14 @@
 ```java
 .andMatchers(HttpMethod.POST, SecurityConstants.REGISTER_PATH).permitAll() // not requiring authentication
 ```
+
+## Pathway 2: Authentication
+
+- User sends POST request to backend with `username` and `password`.
+- Authentication Filter
+  - Request gets passed to the `attemptAuthentication()` function to create an `Authentication` object.
+- Authentication Manager
+  - The request then gets passed to the `authenticate()` function where the username and password are compared with that in the database.
+- Authentication Filter
+  - If authenticated, create JWT in the method of `successfulAuthentication()` in the `header.payload.signature`.
+
