@@ -1,6 +1,10 @@
 package com.ltp.gradesubmission.security.filter;
 
 import java.io.IOException;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
@@ -11,7 +15,11 @@ import com.ltp.gradesubmission.entity.User;
 
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    // /login
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        chain.doFilter(request, response);
+    }
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request,
@@ -19,7 +27,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
         try {
             // get the body of the request as binary data
-            // Throws an exception if the objectmapper, fails to deserialize and map the request
+            // Throws an IOException if the objectmapper, fails to deserialize and map the request
             // stream to the properties in User.class
             User user = new ObjectMapper().readValue(request.getInputStream(), User.class);
 

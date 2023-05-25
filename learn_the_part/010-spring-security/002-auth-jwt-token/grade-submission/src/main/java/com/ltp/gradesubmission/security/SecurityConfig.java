@@ -7,6 +7,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import com.ltp.gradesubmission.security.filter.AuthenticationFilter;
+import com.ltp.gradesubmission.security.filter.FilterOne;
+import com.ltp.gradesubmission.security.filter.FilterTwo;
 import lombok.AllArgsConstructor;
 
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -30,7 +32,9 @@ public class SecurityConfig {
             .antMatchers(HttpMethod.POST, SecurityConstants.REGISTER_PATH).permitAll()
             .anyRequest().authenticated()
             .and()
+            .addFilterBefore(new FilterOne(), AuthenticationFilter.class) // runs before the AuthenticationFilter
             .addFilter(authenticationFilter)
+            .addFilterAfter(new FilterTwo(), AuthenticationFilter.class)
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         return http.build();
     }
