@@ -46,15 +46,14 @@
 ```json
 // Header
 {
-  "alg": "HS256",
+  "alg": "HmacSHA512",
   "typ": "JWT"
 }
 
 // Payload
 {
-  "sub": "leonlow97",
-  "name": "Leon Low",
-  "exp": 920834544
+  "sub": "LeonLow",
+  "exp": 920834544 // expiry time
 }
 ```
 
@@ -81,3 +80,12 @@
 - Authentication Filter
   - If authenticated, create JWT in the method of `successfulAuthentication()` in the `header.payload.signature`.
 
+## Add to `pom.xml`
+
+```xml
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+```
