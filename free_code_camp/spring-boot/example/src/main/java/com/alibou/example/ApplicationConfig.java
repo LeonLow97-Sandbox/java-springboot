@@ -5,8 +5,19 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ApplicationConfig {
-	@Bean("myBean")
+	@Bean("bean1")
 	public MyFirstClass myFirstClass() {
-		return new MyFirstClass("Leon Low Jie Wei");
+		return new MyFirstClass("My First Bean");
+	}
+
+	@Bean
+	public MyFirstClass mySecondBean() {
+		return new MyFirstClass("My Second Bean");
+	}
+
+	@Bean
+	// @Primary
+	public MyFirstClass myThirdBean() {
+		return new MyFirstClass("My Third Bean");
 	}
 }

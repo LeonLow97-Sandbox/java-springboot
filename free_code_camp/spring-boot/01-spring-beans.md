@@ -25,6 +25,8 @@ public class ExampleApplication {
 
 - Another way of using `@Component` to inject the Java Class as a Spring Bean.
   - Using `@Service`, `@Repository` also works because they extends the `@Component` annotation
+- Once a class is annotated with `@Component`, it becomes a Spring-managed bean and can have other beans injected into it using `@Autowired`.
+- Additionally, beans defined with `@Bean` methods in `@Configuration` classes can be injected into these components.
 
 ```java
 // In MyFirstClass.java file
