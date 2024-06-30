@@ -363,8 +363,19 @@ public class AppConfig {
 
 ## Spring Initializr
 
+![Spring Initializr](./diagrams/spring-initializr.png)
+
 - Go to [start.spring.io](https://start.spring.io/)
 - Allows you to customize the project, version, language (Java, Kotlin or Groovy)
   - Packaging: `Jar` (recommended)
   - Java Version: 17
 - `pom.xml`
+
+## Folder Structure
+
+- `.mvn` no need to install Maven, it uses this wrapper for Maven to run Java files
+- `main/java`: stores all java application folders
+- `main/resources/static` and `main/resources/templates`: stores HTML files
+- `application.properties` holds properties needed by Springboot, or custom properties needed for our application
+- `main/test`: stores unit, integration and E2E tests
+- `pom.xml`: 
