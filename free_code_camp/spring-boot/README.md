@@ -379,3 +379,8 @@ public class AppConfig {
 - `application.properties` holds properties needed by Springboot, or custom properties needed for our application
 - `main/test`: stores unit, integration and E2E tests
 - `pom.xml`: 
+
+## Customizing banner
+
+- [Text To Binary Generator](https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20)
+- Create `banner.txt` file in `main/resources`
