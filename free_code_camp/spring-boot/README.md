@@ -378,7 +378,8 @@ public class AppConfig {
 - `main/resources/static` and `main/resources/templates`: stores HTML files
 - `application.properties` holds properties needed by Springboot, or custom properties needed for our application
 - `main/test`: stores unit, integration and E2E tests
-- `pom.xml`: 
+- `pom.xml`: stores dependencies related to the project
+- `./mvnw spring-boot:run`: startup command
 
 ## Customizing banner
 
