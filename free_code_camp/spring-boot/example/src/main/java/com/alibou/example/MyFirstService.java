@@ -11,6 +11,15 @@ public class MyFirstService {
 
 	@Value("${my.custom.property}")
 	private String customProperty; 
+	@Value("${my.custom.property.int}")
+	private Integer customPropertyInt;
+	public void setCustomProperty(String customProperty) {
+		this.customProperty = customProperty;
+	}
+
+	public Integer getCustomPropertyInt() {
+		return this.customPropertyInt;
+	}
 
 	public MyFirstClass getMyFirstClass() {
 		return this.myFirstClass;
