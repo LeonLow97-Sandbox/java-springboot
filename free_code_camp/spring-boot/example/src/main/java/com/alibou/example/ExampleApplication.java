@@ -12,5 +12,7 @@ public class ExampleApplication {
 
 		MyFirstService myFirstService = ctx.getBean(MyFirstService.class);
 		System.out.println(myFirstService.tellStory());
+
+		System.out.println(myFirstService.getCustomProperty());
 	}
 }
